@@ -10,7 +10,6 @@ $(document).ready(function () {
     // Get current hour (24 hour clock) using moment.js
     var currentHour = parseInt(moment().format("H"));
     console.log(currentHour);
-    // currentHour = 11;
 
     // For the integers from 9 to 17:
     var minHour = 9;
@@ -36,8 +35,7 @@ $(document).ready(function () {
         // Generate the event description (a textarea with class "description")
         var description = $('<textarea class="description col">');
         // If this div's hour is greater than current hour, add "future" class (for color coding)
-        // Else if they are equal, add "present" class
-        // Else, add "past" class
+        // Else if they are equal, add "present" class; else, add "past" class
         if (hour > currentHour) {
             description.addClass("future");
         } else if (hour === currentHour) {
@@ -61,12 +59,11 @@ $(document).ready(function () {
 
     // SAVE TO LOCAL STORAGE
 
-    // Create event listener on everything matching ".saveBtn"
+    // Create event listener for clicks on on anything matching ".saveBtn"
     $(document).on("click", ".saveBtn", function() {
-        // Find the description with the matching data-hour
+        // Each save button immediately follows the corresponding description, so select the button's previous sibling
         textarea = $(this).prev();
-        // Save that description's text as the name given by "data-save-key"
+        // Save that description's text as the name given by "data-save-key" (which is unique to each timeblock)
         localStorage.setItem(textarea.attr("data-save-key"), textarea.val());
     })
-
 });
