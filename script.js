@@ -45,14 +45,14 @@ $(document).ready(function () {
         } else {
             description.addClass("past");
         }
-        // Add a data-hour attribute
-        description.attr("data-hour", hour);
-        // retrieve saved description from localStorage
-        // If saved description is not null, set this as the text for "description"
+        // Add data- attribute to store this element's localStorage key
+        description.attr("data-save-key", hour + "h-description");
+        // retrieve saved description from localStorage and set as the text for "description"
+        description.text(localStorage.getItem(description.attr("data-save-key")));
         // Append to timeblock
         timeBlock.append(description);
 
-        // Generate the save button (button with class "saveBtn")
+        // Generate the save button with save icon
         var saveButton = $('<button class="saveBtn col-1">');
         saveButton.html('<i class="fas fa-save fa-lg"></i>');
         // Append to timeblock
@@ -65,8 +65,8 @@ $(document).ready(function () {
     $(document).on("click", ".saveBtn", function() {
         // Find the description with the matching data-hour
         textarea = $(this).prev();
-        // Save that description's text as under the key data-hour + "h-description"
-        localStorage.setItem(textarea.attr("data-hour") + "h-description", textarea.val());
+        // Save that description's text as the name given by "data-save-key"
+        localStorage.setItem(textarea.attr("data-save-key"), textarea.val());
     })
 
     // THINGS TO ADD IF ENOUGH TIME: 
