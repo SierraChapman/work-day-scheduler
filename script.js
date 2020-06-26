@@ -21,7 +21,7 @@ $(document).ready(function () {
         $(".container").append(timeBlock);
 
         // Generate an hour div
-        var hourDiv = $('<div class="hour col-1">');
+        var hourDiv = $('<div class="hour col-auto">');
         // Append integer mod 12 to hour div's text
         hourDiv.append((hour - 1) % 12 + 1);
         // Append AM or PM to hour div's text depending on whether the int is > 12
@@ -34,7 +34,7 @@ $(document).ready(function () {
         timeBlock.append(hourDiv);
 
         // Generate the event description (a textarea with class "description")
-        var description = $('<textarea class="description col-10">');
+        var description = $('<textarea class="description col">');
         // If this div's hour is greater than current hour, add "future" class (for color coding)
         // Else if they are equal, add "present" class
         // Else, add "past" class
@@ -53,7 +53,7 @@ $(document).ready(function () {
         timeBlock.append(description);
 
         // Generate the save button with save icon
-        var saveButton = $('<button class="saveBtn col-1">');
+        var saveButton = $('<button class="saveBtn col-auto">');
         saveButton.html('<i class="fas fa-save fa-lg"></i>');
         // Append to timeblock
         timeBlock.append(saveButton);
@@ -69,8 +69,4 @@ $(document).ready(function () {
         localStorage.setItem(textarea.attr("data-save-key"), textarea.val());
     })
 
-    // THINGS TO ADD IF ENOUGH TIME: 
-    // EDIT COLUMN WIDTHS TO LOOK GOOD ON SMALL SCREENS
-    // AUTOMATICALLY UPDATE COLOR CODING
-    // AUTOMATICALLY UPDATE HOUR
 });
