@@ -46,6 +46,7 @@ $(document).ready(function () {
             description.addClass("past");
         }
         // Add a data-hour attribute
+        description.attr("data-hour", hour);
         // retrieve saved description from localStorage
         // If saved description is not null, set this as the text for "description"
         // Append to timeblock
@@ -54,17 +55,19 @@ $(document).ready(function () {
         // Generate the save button (button with class "saveBtn")
         var saveButton = $('<button class="saveBtn col-1">');
         saveButton.html('<i class="fas fa-save fa-lg"></i>');
-        // Add a data-hour attribute
         // Append to timeblock
         timeBlock.append(saveButton);
     }
 
-
     // SAVE TO LOCAL STORAGE
 
     // Create event listener on everything matching ".saveBtn"
+    $(document).on("click", ".saveBtn", function() {
         // Find the description with the matching data-hour
+        textarea = $(this).prev();
         // Save that description's text as under the key data-hour + "h-description"
+        localStorage.setItem(textarea.attr("data-hour") + "h-description", textarea.val());
+    })
 
     // THINGS TO ADD IF ENOUGH TIME: 
     // INCREASE TEXT CONTRAST OF DESCRIPTIONS
