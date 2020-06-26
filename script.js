@@ -8,6 +8,9 @@ $(document).ready(function () {
     // GENERATE TIME BLOCKS
 
     // Get current hour (24 hour clock) using moment.js
+    var currentHour = parseInt(moment().format("H"));
+    console.log(currentHour);
+    // currentHour = 11;
 
     // For the integers from 9 to 17:
     var minHour = 9;
@@ -32,9 +35,16 @@ $(document).ready(function () {
 
         // Generate the event description (a textarea with class "description")
         var description = $('<textarea class="description col-10">');
-        // If this div's hour is greater than current hour, add "future" class (for color coding
+        // If this div's hour is greater than current hour, add "future" class (for color coding)
         // Else if they are equal, add "present" class
         // Else, add "past" class
+        if (hour > currentHour) {
+            description.addClass("future");
+        } else if (hour === currentHour) {
+            description.addClass("present");
+        } else {
+            description.addClass("past");
+        }
         // Add a data-hour attribute
         // retrieve saved description from localStorage
         // If saved description is not null, set this as the text for "description"
@@ -57,6 +67,8 @@ $(document).ready(function () {
         // Save that description's text as under the key data-hour + "h-description"
 
     // THINGS TO ADD IF ENOUGH TIME: 
+    // INCREASE TEXT CONTRAST OF DESCRIPTIONS
+    // ADD SPACE TO BOTTOM OF PAGE
     // EDIT COLUMN WIDTHS TO LOOK GOOD ON SMALL SCREENS
     // AUTOMATICALLY UPDATE COLOR CODING
     // AUTOMATICALLY UPDATE HOUR
